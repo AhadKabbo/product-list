@@ -1,42 +1,59 @@
-import { addToCart } from "@/redux/slices/cartSlice";
-import { BaggageClaim } from "lucide-react";
+"use client";
+import {
+  decrementQty,
+  incrementQty,
+  removeFromCart,
+} from "@/redux/slices/cartSlice";
+import { Minus, Plus, Trash2 } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 import { useDispatch } from "react-redux";
 
-export default function Product({ product }) {
+export default function CartProduct({ cartItem }) {
   const dispatch = useDispatch();
-  function handleAddToCart() {
-    // console.log(product);
-    dispatch(addToCart(product));
+  function handleRemoveCartItem(cartId) {
+    dispatch(removeFromCart(cartId));
+  }
+  function handleIncrementQty(cartId) {
+    dispatch(incrementQty(cartId));
+  }
+  function handleDecrementQty(cartId) {
+    dispatch(decrementQty(cartId));
   }
   return (
-    <div className="rounded-lg mr-3  bg-white dark:bg-slate-900 overflow-hidden border shadow">
-      <Link href="#">
+    <div className="flex items-center justify-between border-b border-slate-400  pb-3 font-semibold text-sm mb-4">
+      <div className="flex items-center gap-3">
         <Image
-          src={product.image}
-          alt={product.title}
-          width={556}
-          height={556}
-          className="w-full h-48 object-cover"
+          src={cartItem.image}
+          width={249}
+          height={249}
+          alt={cartItem.title}
+          className="rounded-xl w-20 h-20"
         />
-      </Link>
-      <div className="px-4">
-        <Link href={`/products`}>
-          <h2 className="text-center dark:text-slate-200 text-slate-800 my-2 font-semibold">
-            {product.title}
-          </h2>
-        </Link>
-        <div className="flex items-center justify-between gap-2 pb-3 dark:text-slate-200 text-slate-800">
-          <p>$ {product.price}</p>
-          <button
-            onClick={() => handleAddToCart()}
-            className="flex items-center space-x-2 bg-lime-600 px-4 py-2 rounded-md text-white">
-            {/* <BaggageClaim /> */}
-            <span>Add</span>
-          </button>
+        <div className="flex flex-col">
+          <h2>{cartItem.title}</h2>
         </div>
+      </div>
+      <div className=" rounded-xl border border-gray-400 flex gap-3 items-center ">
+        <button
+          onClick={() => handleDecrementQty(cartItem.id)}
+          className="border-r border-gray-400 py-2 px-4"
+        >
+          <Minus />
+        </button>
+        <p className="flex-grow py-2 px-4">{cartItem.qty ?? 1}</p>
+        <button
+          onClick={() => handleIncrementQty(cartItem.id)}
+          className="border-l border-gray-400 py-2 px-4"
+        >
+          <Plus />
+        </button>
+      </div>
+      <div className="flex items-center gap-2">
+        <h4>${cartItem.price}</h4>
+        <button onClick={() => handleRemoveCartItem(cartItem.id)}>
+          <Trash2 className="text-red-600 w-5 h-5" />
+        </button>
       </div>
     </div>
   );

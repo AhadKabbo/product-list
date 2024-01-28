@@ -32,7 +32,8 @@ export default function Product({ product }) {
           <p>$ {product.price}</p>
           <button
             onClick={() => handleAddToCart()}
-            className="flex items-center space-x-2 bg-lime-600 px-4 py-2 rounded-md text-white">
+            className="flex items-center space-x-2 bg-lime-600 px-4 py-2 rounded-md text-white"
+          >
             <BaggageClaim />
             <span>Add</span>
           </button>
