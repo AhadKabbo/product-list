@@ -17,7 +17,7 @@ export default function ProductList({ products }) {
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
-      items: 2,
+      items: 1,
       slidesToSlide: 1, // optional, default to 1.
     },
   };
@@ -37,7 +37,7 @@ export default function ProductList({ products }) {
       containerClass="carousel-container"
       removeArrowOnDeviceType={["tablet", "mobile"]}
       // deviceType={}
-      dotListClass="custom-dot-list-style"
+      dotListClass="custom-dot-list-style "
       itemClass="px-4">
       {products.map((product, i) => {
         return <Product key={i} product={product} />;

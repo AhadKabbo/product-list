@@ -2,9 +2,9 @@ import { ChevronRight, Home } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
-export default function Breadcrumb() {
+export default function Navbar() {
   return (
-    <div className="bg-gray-600  mx-auto my-3 max-w-7xl px-2 rounded-md sm:px-6 lg:px-8">
+    <div className="bg-gray-600  mx-auto my-3 max-w-7xl px-2 rounded-md lg:px-8">
       <nav
         className="flex md:justify-around md:-space-x-40 py-6 px-8 md:px-10"
         aria-label="Breadcrumb">

@@ -28,29 +28,27 @@ export default function CartProduct({ cartItem }) {
           width={249}
           height={249}
           alt={cartItem.title}
-          className="rounded-xl w-20 h-20"
+          className="rounded-xl w-20 h-20 "
         />
         <div className="flex flex-col">
-          <h2>{cartItem.title}</h2>
+          <h2 className="tracking-wide max-w-xl  ">{cartItem.title}</h2>
         </div>
       </div>
-      <div className=" rounded-xl border border-gray-400 flex gap-3 items-center ">
+      <div className="sm:rounded-xl sm:border border-gray-400 flex gap-3 items-center sm:gap-1 md:max-w-2xl ">
         <button
           onClick={() => handleDecrementQty(cartItem.id)}
-          className="border-r border-gray-400 py-2 px-4"
-        >
+          className="border-r border-gray-400 py-2 px-4">
           <Minus />
         </button>
         <p className="flex-grow py-2 px-4">{cartItem.qty ?? 1}</p>
         <button
           onClick={() => handleIncrementQty(cartItem.id)}
-          className="border-l border-gray-400 py-2 px-4"
-        >
+          className="border-l border-gray-400 py-2 px-4">
           <Plus />
         </button>
       </div>
       <div className="flex items-center gap-2">
-        <h4>${cartItem.price}</h4>
+        {/* <h4>${cartItem.price}</h4> */}
         <button onClick={() => handleRemoveCartItem(cartItem.id)}>
           <Trash2 className="text-red-600 w-5 h-5" />
         </button>
